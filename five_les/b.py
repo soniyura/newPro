@@ -1,12 +1,21 @@
+"""
+Sum of list
+input 1 2 3 4
+output 10
+"""
+
 from typing import List
 
 def get_user_input() -> List[str]:
     """
     :return: list of string from terminal
     """
+    # input_string = input("Input list of number divided by spase: ")
+    # result_list = input_string.split(" ")
+    # return result_list
     input_string = input("Input list of number divided by spase: ")
-    result_list = input_string.split(" ")
-    return result_list
+    return input_string.split(" ")
+#    or  return input("Input list of number divided by spase: ").split(" ")
 
 def validate_list(raw_list: List[str]) -> List[int]:
     """
@@ -15,9 +24,10 @@ def validate_list(raw_list: List[str]) -> List[int]:
     :return: valid list of int
     """
     try:
-        result_list = []
-        for el in raw_list:
-            result_list.append(int(el))
+        result_list = [int(el) for el in raw_list]
+        # result_list = []
+        # for el in raw_list:
+        #     result_list.append(int(el))
         return result_list
     except ValueError as err:
         print(err)
