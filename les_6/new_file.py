@@ -12,7 +12,29 @@ def input_data() -> List[List[int]]:
     return List_a_b_c_int
 
 def validate_input(raw_data: List[List[int]]) -> bool:
-    pass
+    """
+    case 1: empty list
+    case 2: same length of all lists
+    case 3: a != 0
+    :param raw_data:
+    :return:
+    """
+    for l in raw_data:
+        if not l:
+            return False # case 1
+
+    if len(raw_data[0]) != len(raw_data[1]) != len(raw_data[2]):
+        return False  # case 2
+
+    for el in raw_data[0]:
+        if el == 0:
+            return False   # case 3
+
+    return True
+
+
+
+
 
 def calc_quadr_eq(valid_data: List[List[int]]) -> List[Tuple[Union[str, int]]]:
     pass
@@ -20,7 +42,8 @@ def calc_quadr_eq(valid_data: List[List[int]]) -> List[Tuple[Union[str, int]]]:
 def main():
     input_list = input_data()
     print(input_list)
-
+    if validate_input(input_list):
+        calc_quadr_eq(input_list)
 
 if __name__ == '__main__':
     main()
