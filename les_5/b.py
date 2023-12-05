@@ -37,7 +37,7 @@ def get_sum_list(my_list: List[int]) -> int:
     """
     :param my_list: valid list of int
     :return: sum of list
-    """
+    """  
     result = 0
     for el in my_list:
         result += el
