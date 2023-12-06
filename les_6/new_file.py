@@ -47,16 +47,38 @@ result = [
     ]
 """
 
-def calc_quadr_eq(valid_data: List[List[int]]) -> List[Tuple[Union[str, int]]]:
+def calc_quadr_eq(valid_data: List[List[int]]) -> List[Tuple[Union[float, str]]]:
+    result_list = []
     for ind, el in enumerate(valid_data[0]):
         a = el
         b = valid_data[1][ind]
         c = valid_data[2][ind]
-        print(f'Here is a = {a}')
-        print(f'Here is b = {b}')
-        print(f'Here is c = {c}')
-        print()
-        print(f'{a}x^2 + {b}x + {c} = 0')
+
+        dis = b**2 - 4*a*c
+        print(dis)
+
+        if dis > 0:
+            x1 = (-b + dis**0.5) / (2*a)
+            x2 = (-b + dis**0.5) / (2*a)
+            result_list.append((x1, x2))
+        elif dis == 0:
+            x = -b / (a *2)
+            result_list.append((x))
+        else:
+            result_list.append(("No roots"))
+    return result_list
+
+
+
+def print_roots(list_roots: List[Tuple[Union[float, str]]], input_list: List[List[int]]) -> None:
+
+    for ind, el in enumerate(input_list[0]):
+        a = el
+        b = input_list[1][ind]
+        c = input_list[2][ind]
+        result_str = f'For equation {a}x^2 + {b}x + {c} = 0 '  \
+                    f'result: {list_roots[ind]}'
+        print(result_str)
 
 
 
@@ -65,7 +87,10 @@ def main():
     input_list = input_data()
     print(input_list)
     if validate_input(input_list):
-        calc_quadr_eq(input_list)
+        result_list = calc_quadr_eq(input_list)
+        print_roots(list_roots=result_list, input_list=input_list)
+
+
 
 
 if __name__ == '__main__':
