@@ -1,16 +1,33 @@
 from typing import List, Tuple, Union
 
 
-def input_data() -> List[List[int]]:
-    list_a_str = input("Enter list  of int type: ").split()
-    list_a_int = [int(item) for item in list_a_str]
-    list_b_str = input("Enter list  of int type: ").split()
-    list_b_int = [int(item) for item in list_b_str]
-    list_c_str = input("Enter list  of int type: ").split()
-    list_c_int = [int(item) for item in list_c_str]
-    List_a_b_c_int = [list_a_int, list_b_int, list_c_int]
-    return List_a_b_c_int
+def _input_list(massage: str) -> List[int]:
+    list_str = input(massage).split()
+    list_int = [int(item) for item in list_str]
+    return list_int
 
+def input_data() -> List[List[int]]:
+    return  [_input_list("Enter list  of int type: "),
+             _input_list("Enter list  of int type: "),
+             _input_list("Enter list  of int type: ")]
+
+
+def _case1(raw_data: List[List[int]]) -> bool:
+    for l in raw_data:
+        if not l:
+            return False
+    return True
+
+def _case2(raw_data: List[List[int]]) -> bool:
+    if len(raw_data[0]) != len(raw_data[1]) != len(raw_data[2]):
+        return False
+    return True
+
+def _case3(raw_data: List[List[int]]) -> bool:
+    for el in raw_data[0]:
+        if el == 0:
+            return False
+    return True
 
 def validate_input(raw_data: List[List[int]]) -> bool:
     """
@@ -20,18 +37,8 @@ def validate_input(raw_data: List[List[int]]) -> bool:
     :param raw_data:
     :return:
     """
-    for l in raw_data:
-        if not l:
-            return False       # case 1
+    return _case1(raw_data) and _case2(raw_data) and _case3(raw_data)
 
-    if len(raw_data[0]) != len(raw_data[1]) != len(raw_data[2]):
-        return False           # case 2
-
-    for el in raw_data[0]:
-        if el == 0:
-            return False       # case 3
-
-    return True
 
 """
 valid_dta = [
