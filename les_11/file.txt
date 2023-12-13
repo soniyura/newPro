@@ -1,6 +1,6 @@
-cer = BMW, color = Red, weight = 155, transmission = Manual, Engine = 2.0
-cer = Seat, color = Red, weight = 155, transmission = AT, Engine = 3.0
-cer = Audi, color = Green, weight = 155, transmission = Manual, Engine = 5.2
-cer = Chevrolet, color = Red, weight = 155, transmission = AT, Engine = 2.0
-cer = Jaguar, color = Red, weight = 157, transmission = Manual, Engine = 2.0
-cer = Opel, color = Red, weight = 155, transmission = AT, Engine = 1.0
+car = BMW, color = Red, weight = 155, transmission = Manual, Engine = 2.0
+car = Seat, color = Red, weight = 155, transmission = AT, Engine = 3.0
+car = Audi, color = Green, weight = 155, transmission = Manual, Engine = 5.2
+car = Chevrolet, color = Red, weight = 155, transmission = AT, Engine = 2.0
+car = Jaguar, color = Red, weight = 157, transmission = Manual, Engine = 2.0
+car = Opel, color = Red, weight = 155, transmission = AT, Engine = 1.0
