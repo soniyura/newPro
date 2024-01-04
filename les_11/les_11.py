@@ -129,6 +129,7 @@ def serealize(
     return obj_list
 
 
+
 def main():
     reader = Reader("file.txt")
     parser = Parser(reader)
