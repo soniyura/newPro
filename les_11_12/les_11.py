@@ -4,6 +4,7 @@
 проверки
 сохранить в json  файл
 """
+import json
 from pprint import pprint
 from typing import List, Union
 
@@ -51,6 +52,14 @@ class Car:
                 f"weight = {self.weight} " \
                 f"transmission = {self.transmission} " \
                 f"engine = {self.engine} ")
+
+    def to_json(self):
+        return {"color": self.color,
+                "weight": self.weight,
+                "transmission": self.transmission,
+                "engine": self.engine
+                }
+
 
 
 
@@ -129,6 +138,17 @@ def serealize(
     return obj_list
 
 
+class Writer:
+    def __init__(self, name: str):
+        self.name = name
+
+    def write(self, obj_list: List[Union[BMW, Seat, Audi, Chevrolet, Jaguar, Opel]]):
+        with open(self.name, "w") as f:
+            for el in obj_list:
+                data = json.dumps(el.to_json())
+                f.writelines(data)
+                f.writelines("\n")
+
 
 def main():
     reader = Reader("file.txt")
@@ -136,8 +156,10 @@ def main():
     car_list = parser.parse()
     obj_list = serealize(car_list)
     print(obj_list)
-
-
+    writer = Writer("file.json")
+    writer.write(obj_list)
+    #for el in obj_list:
+        #print(el.to_json())
 
 if __name__ == "__main__":
     main()
