@@ -9,6 +9,14 @@ from pprint import pprint
 from typing import List, Union
 
 
+class BMWError(Exception):
+    pass
+
+
+class SeatError(Exception):
+    pass
+
+
 class Reader:
     def __init__(self, name: str):
         self.name = name
@@ -54,12 +62,17 @@ class Car:
 
 
 class BMW(Car):
-    pass
+    def __init__(self, color: str, weight: str, transmission: str, engine: str):
+        super().__init__(color, weight, transmission, engine)
+        if self.color != "Red":
+            raise BMWError("BMW should be Red")
 
 
 class Seat(Car):
-    pass
-
+    def __init__(self, color: str, weight: str, transmission: str, engine: str):
+        super().__init__(color, weight, transmission, engine)
+        if int(self.weight) != 155:
+            raise SeatError("Seat`s weight should be 155")
 
 class Audi(Car):
     pass
