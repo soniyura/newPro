@@ -23,21 +23,13 @@ class Parser:
         self.reader = reader
 
     def _parse_string(self, s: str) -> dict:
-        dict = {}
         object_list = s.split(", ")
-        for el in object_list:
-            tmp_list = el.split(" = ")
-            dict[tmp_list[0]] = tmp_list[1]
-        return dict
+        return {tmp_list[0]: tmp_list[1] for el in object_list for tmp_list in [el.split(" = ")]}  # list comprehension
 
     def parse(self) -> List[dict]:
-        # cer = BMW, color = Red, weight = 155, transmission = Manual, Engine = 2.0
-        result_list = []
         data = self.reader.read()
         car_list = data.split("\n")
-        for el in car_list:
-            result_list.append(self._parse_string(el))
-        return result_list
+        return [self._parse_string(el) for el in car_list]   # list comprehension
 
 
 class Car:
@@ -59,8 +51,6 @@ class Car:
                 "transmission": self.transmission,
                 "engine": self.engine
                 }
-
-
 
 
 class BMW(Car):
@@ -87,55 +77,24 @@ class Opel(Car):
     pass
 
 
-def serealize(
-    car_list: List[dict],
-) -> List[Union[BMW, Seat, Audi, Chevrolet, Jaguar, Opel]]:
-    obj_list = []
-    for el in car_list:
-        if el["car"] == "BMW":
-            tmp_object = BMW(
-                color=el["color"],
-                weight=el["weight"],
-                transmission=el["transmission"],
-                engine=el["engine"],
-            )
-        elif el["car"] == "Seat":
-            tmp_object = Seat(
-                color=el["color"],
-                weight=el["weight"],
-                transmission=el["transmission"],
-                engine=el["engine"],
-            )
-        elif el["car"] == "Audi":
-            tmp_object = Audi(
-                color=el["color"],
-                weight=el["weight"],
-                transmission=el["transmission"],
-                engine=el["engine"],
-            )
-        elif el["car"] == "Chevrolet":
-            tmp_object = Chevrolet(
-                color=el["color"],
-                weight=el["weight"],
-                transmission=el["transmission"],
-                engine=el["engine"],
-            )
-        elif el["car"] == "Jaguar":
-            tmp_object = Jaguar(
-                color=el["color"],
-                weight=el["weight"],
-                transmission=el["transmission"],
-                engine=el["engine"],
-            )
-        elif el["car"] == "Opel":
-            tmp_object = Opel(
-                color=el["color"],
-                weight=el["weight"],
-                transmission=el["transmission"],
-                engine=el["engine"],
-            )
-        obj_list.append(tmp_object)
-    return obj_list
+car_made = {
+    "BMW": BMW,
+    "Seat": Seat,
+    "Audi": Audi,
+    "Chevrolet": Chevrolet,
+    "Jaguar": Jaguar,
+    "Opel": Opel
+}
+
+
+def serealize(car_list: List[dict]) -> List[Union[BMW, Seat, Audi, Chevrolet, Jaguar, Opel]]:
+    return [car_made[el["car"]](color=el["color"],
+                                weight=el["weight"],
+                                transmission=el["transmission"],
+                                engine=el["engine"]) for el in car_list]   # list comprehension
+# В выражении List Comprehension сначала указывается то, что должно произойти с каждым элементом,
+# а затем идет цикл, который перебирает элементы из итерируемого объекта.
+
 
 
 class Writer:
@@ -158,8 +117,7 @@ def main():
     print(obj_list)
     writer = Writer("file.json")
     writer.write(obj_list)
-    #for el in obj_list:
-        #print(el.to_json())
+
 
 if __name__ == "__main__":
     main()
