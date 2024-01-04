@@ -53,11 +53,20 @@ class CswWriter:
 def main():
     student = Student()
     teacher = Teacher()
+
+    #"id", "login", "password", "email", "subject", "category"
     student_data = [[],
                     []]
 
-    teacher_data = [[],
-                    []]
+    teacher_data = [["0", "Ivan", "qwerty", "qwe@gg.com", "3", "python"],
+                    ["1", "Alex", "qwerty1", "qwe@gg.com", "40", "python"],
+                    ["2", "Anna", "qwerty2", "qwe1@gg.com", "40", "python"],
+                    ["3", "Victoria", "qwerty3", "qwe2@gg.com", "40", "python"],
+                    ["4", "Denis", "qwerty4", "qwe3@gg.com", "40", "python"],
+                    ["5", "Pavel", "qwerty5", "qwe4@gg.com", "40", "python"]
+                    ]
+
+   # "id", "login", "password", "email", "avd_mark", "course"
     for el in teacher_data:
         teacher.append(el)
 
